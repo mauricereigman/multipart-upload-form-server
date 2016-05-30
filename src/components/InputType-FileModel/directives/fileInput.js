@@ -25,24 +25,32 @@
                         var files = input[0].files;
                         var errorMessage = null;
                         var fileTypeValidations = FileFactory.checkFileTypes(files, allowedExtensions);
+                        var errorMessage = null;
 
+                        // check file size
                         if (!FileFactory.checkFileSizes(files, parseInt(maxFileSize))) {
                             errorMessage = "De totale bestandsgroote is te groot";
+                            _setErrorMessage(errorMessage);
                         }
+
+                        // check file types
                         for (var i = 0; i < fileTypeValidations.length; i++) {
                             if (fileTypeValidations[i].allowed === false) {
                                 errorMessage = "Het bestand " + fileTypeValidations[i].name + " van type " + fileTypeValidations[i].type  + " is niet toegestaan. De toegestaance formaten zijn een van de volgende extensies: " + allowedExtensions;
+                                _setErrorMessage(errorMessage);
                             }
                         }
 
-                        // set and delete error message
-                        if (errorMessage) {
-                            // set validation message
-                            input[0].setCustomValidity(errorMessage);
-                        }
-                        else {
-                            // no validation message
-                            input[0].setCustomValidity("");
+                        function _setErrorMessage (errorMessage) {
+                            // set and delete error message
+                            if (errorMessage) {
+                                // set validation message
+                                input[0].setCustomValidity(errorMessage);
+                            }
+                            else {
+                                // no validation message
+                                input[0].setCustomValidity("");
+                            }
                         }
 
                         $scope.fileModel = input[0].files;
