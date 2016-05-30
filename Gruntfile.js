@@ -199,7 +199,7 @@ module.exports = function(grunt) {
 
     // Tasks
     grunt.registerTask('test', ['karma']);
-    grunt.registerTask('default', ['clean', 'bowerrc', 'superconcat', 'removelogging', 'ngAnnotate', 'less:develop', 'copy', 'ngtemplates']);
+    grunt.registerTask('default', ['clean', 'bowerrc', 'superconcat', 'removelogging', 'ngAnnotate', 'less:develop', 'copy', 'ngtemplates', 'bower']);
     grunt.registerTask('develop', ['clean', 'superconcat', 'ngAnnotate', 'less:develop', 'copy', 'ngtemplates']);
 
     
