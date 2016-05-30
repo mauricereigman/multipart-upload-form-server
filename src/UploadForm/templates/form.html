@@ -8,18 +8,14 @@
                 max-file-size="5000000"
                 allowed-extensions="image/*,pdf">
         </input-type-file>
-        <br>
+        <br><br>
         <button type="submit">Upload images</button>
     </form>
 
     <div ng-if="files.uploadedFiles">
         <h2>uploaded images</h2>
-        <div ng-repeat="file in files.uploadedFiles track by $index">
+        <span ng-repeat="file in files.uploadedFiles track by $index">
             <img src="{{file.filePath}}" width="150px">
-        </div>
+        </span>
     </div>
-
-    {{files | json}}
-    <br>
-    {{files.uploadedFiles.length}}
 </div>

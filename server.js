@@ -28,8 +28,9 @@ var upload = multer({
             cb(null, uploadFolder)
         },
         filename: function (req, file, cb) {
-            console.log(createFileName(file));
-            cb(null, createFileName(file))
+            console.log(file.originalname);
+            console.log(file);
+            cb(null, file.fieldname + '-' + file.originalname)
         }
     })
 });
@@ -42,10 +43,12 @@ app.post('/upload', upload.array('attachment'), function(req,res){
         console.log("storing :" + req.files[i].originalname + " in " + uploadFolder);
         filePaths.push(
             {
-                filePath: uploadFolder + createFileName(req.files[i])
+                filePath: uploadFolder + req.files[i].fieldname + '-' + req.files[i].originalname
             }
         );
     }
+
+    console.log(filePaths);
 
     res.send(filePaths);
     res.status(204).end();

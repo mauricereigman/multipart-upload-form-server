@@ -31,7 +31,7 @@
                         }
                         for (var i = 0; i < fileTypeValidations.length; i++) {
                             if (fileTypeValidations[i].allowed === false) {
-                                errorMessage = "Het bestand " + fileTypeValidations[i].name + " van type" + fileTypeValidations[i].type  + "is niet toegestaan. De toegestaance formaten zijn een van de volgende extensies: " + allowedExtensions;
+                                errorMessage = "Het bestand " + fileTypeValidations[i].name + " van type " + fileTypeValidations[i].type  + " is niet toegestaan. De toegestaance formaten zijn een van de volgende extensies: " + allowedExtensions;
                             }
                         }
 
