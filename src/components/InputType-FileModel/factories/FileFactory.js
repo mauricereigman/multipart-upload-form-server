@@ -32,7 +32,6 @@
          * @returns {Array}
          */
         this.checkFileTypes = function (files, allowedExtensions) {
-            
             var results = [];
 
             for (var i = 0; i < files.length; i++) {

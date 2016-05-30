@@ -26,10 +26,14 @@
                     $scope.$apply(function(){
                         var files = input[0].files;
                         var errorMessage = null;
-                        if (allowedExtensions) {
-                            var fileTypeValidations = FileFactory.checkFileTypes(files, allowedExtensions);
-                        }
+                        var fileTypeValidations = null;
                         var errorMessage = null;
+                        _setErrorMessage(null);
+                        
+                        if (allowedExtensions) {
+                            console.log(files);
+                            fileTypeValidations = FileFactory.checkFileTypes(files, allowedExtensions);
+                        }
 
                         // check file size
                         if (!FileFactory.checkFileSizes(files, parseInt(maxFileSize))) {
