@@ -1,0 +1,25 @@
+<h2>
+    main form
+</h2>
+<div ng-controller="FormCtrl">
+    <form  method="POST" enctype="multipart/form-data" ng-submit="submitForm()">
+        <input-type-file
+                file-model="userInput.attachment"
+                max-file-size="5000000"
+                allowed-extensions="image/*,pdf">
+        </input-type-file>
+        <br>
+        <button type="submit">Upload images</button>
+    </form>
+
+    <div ng-if="files.uploadedFiles">
+        <h2>uploaded images</h2>
+        <div ng-repeat="file in files.uploadedFiles track by $index">
+            <img src="{{file.filePath}}" width="150px">
+        </div>
+    </div>
+
+    {{files | json}}
+    <br>
+    {{files.uploadedFiles.length}}
+</div>
