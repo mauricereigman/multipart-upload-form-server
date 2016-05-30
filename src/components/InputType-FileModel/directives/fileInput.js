@@ -9,22 +9,26 @@
         return {
             restrict: 'AE',
             scope: {
-                fileModel: '='
+                fileModel: '=',
+
             },
             templateUrl: 'components/InputType-FileModel/templates/input-type-file.html',
             link: function($scope, $element, $attrs) {
 
                 var maxFileSize = $attrs.maxFileSize || 1000000;// default file size or set given file size trhough "max-file-size"
-                var allowedExtensions = $attrs.allowedExtensions || "ALL";// default extension support is ALLOW ALL
                 var input = $element.find('input');
-
                 var modelSetter = $parse($attrs.fileModel).assign;
+                if ($attrs.allowedExtensions && $attrs.allowedExtensions !== "") {
+                    var allowedExtensions = $attrs.allowedExtensions;// default extension support is ALLOW ALL
+                }
 
                 input.bind('change', function () {
                     $scope.$apply(function(){
                         var files = input[0].files;
                         var errorMessage = null;
-                        var fileTypeValidations = FileFactory.checkFileTypes(files, allowedExtensions);
+                        if (allowedExtensions) {
+                            var fileTypeValidations = FileFactory.checkFileTypes(files, allowedExtensions);
+                        }
                         var errorMessage = null;
 
                         // check file size
